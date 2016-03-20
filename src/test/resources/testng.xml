@@ -4,7 +4,7 @@
 	<test name="Test1">
 		<parameter name="path" value="/"/>
 		<classes>
-		    <class name="org.allga.HomePageTest"/>
+		    <class name="org.allga.LoginTest"/>
 		</classes>
 	</test>  
 </suite>
