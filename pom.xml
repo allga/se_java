@@ -10,7 +10,7 @@
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>6.9.4</version>
+      <version>6.9.10</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -20,7 +20,7 @@
     <dependency>
       <groupId>ru.stqa.selenium</groupId>
       <artifactId>webdriver-factory</artifactId>
-      <version>1.1.46</version>
+      <version>1.1.52</version>
     </dependency>
   </dependencies>
   <build>
