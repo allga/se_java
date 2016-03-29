@@ -2,7 +2,7 @@ package org.allga.tests;
 
 import java.util.concurrent.TimeUnit;
 
-import org.allga.model.MovieData;
+import org.allga.helpers.MovieHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -16,13 +16,11 @@ import org.allga.util.PropertyLoader;
 /**
  * Base class for all the TestNG-based test classes
  */
-public class TestBase {
-	protected WebDriver driver;
+public class TestBase extends MovieHelper {
 
 	protected String gridHubUrl;
 
 	protected String baseUrl;
-	private boolean acceptNextAlert = true;
 
 	@BeforeClass
 	public void init() {
@@ -43,6 +41,7 @@ public class TestBase {
 			driver = WebDriverFactory.getDriver(capabilities);
 		}
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		login("admin", "admin");
 	}
 
 	@AfterSuite(alwaysRun = true)
@@ -58,52 +57,7 @@ public class TestBase {
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.name("password")).clear();
         driver.findElement(By.name("password")).sendKeys(password);
-        driver.findElement(By.name("submit")).click();
-    }
-
-	protected void click(By locator) {
-		driver.findElement(locator).click();
+		click(By.name("submit"));
 	}
 
-	protected void type(By locator, String text) {
-		click(locator);
-		if (text != null) {
-			String existingText = driver.findElement(locator).getAttribute("value");
-			if ( ! text.equals(existingText)) {
-				driver.findElement(locator).clear();
-				driver.findElement(locator).sendKeys(text);
-			}
-		}
-	}
-
-	private boolean isElementPresent(By by) {
-        try {
-            driver.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-
-	private String closeAlertAndGetItsText() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            if (acceptNextAlert) {
-                alert.accept();
-            } else {
-                alert.dismiss();
-            }
-            return alertText;
-        } finally {
-            acceptNextAlert = true;
-        }
-    }
-
-	protected void fillMovieForm(MovieData movie) {
-        type(By.name("imdbid"), movie.getNumber());
-        type(By.name("name"), movie.getTitle());
-        type(By.name("year"), movie.getYear());
-        type(By.name("duration"), movie.getDuration());
-    }
 }

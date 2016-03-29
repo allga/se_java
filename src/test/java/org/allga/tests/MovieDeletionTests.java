@@ -17,7 +17,6 @@ public class MovieDeletionTests extends TestBase {
 
     @Test
     public void testDeletionMovie() {
-        login("admin", "admin");
         List<WebElement> before = new ArrayList<WebElement>(driver.findElements(By.cssSelector("div.movie_box")));
         before.get(0).click();
         click(By.xpath("//*[@class='button']//a[.//img[@title=\"Remove\"]]"));

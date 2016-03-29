@@ -14,7 +14,6 @@ public class MovieCreationTests extends TestBase {
 
     @Test
     public void testPositiveCreationMovie() {
-        login("admin", "admin");
         click(By.cssSelector("a[href=\"./?go=add\"]"));
         MovieData movie = new MovieData().setNumber("0711111").setTitle("Miles Ahead").setYear("2015").setDuration("100");
         fillMovieForm(movie);
@@ -24,7 +23,6 @@ public class MovieCreationTests extends TestBase {
 
     @Test
     public void testRequiredFieldCreationMovie() {
-        login("admin", "admin");
         click(By.cssSelector("a[href=\"./?go=add\"]"));
         MovieData movie = new MovieData().setNumber("0711111").setYear("2015").setDuration("100");
         fillMovieForm(movie);
