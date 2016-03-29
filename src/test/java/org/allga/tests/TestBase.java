@@ -2,6 +2,7 @@ package org.allga.tests;
 
 import java.util.concurrent.TimeUnit;
 
+import org.allga.model.MovieData;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -60,6 +61,21 @@ public class TestBase {
         driver.findElement(By.name("submit")).click();
     }
 
+	protected void click(By locator) {
+		driver.findElement(locator).click();
+	}
+
+	protected void type(By locator, String text) {
+		click(locator);
+		if (text != null) {
+			String existingText = driver.findElement(locator).getAttribute("value");
+			if ( ! text.equals(existingText)) {
+				driver.findElement(locator).clear();
+				driver.findElement(locator).sendKeys(text);
+			}
+		}
+	}
+
 	private boolean isElementPresent(By by) {
         try {
             driver.findElement(by);
@@ -82,5 +98,12 @@ public class TestBase {
         } finally {
             acceptNextAlert = true;
         }
+    }
+
+	protected void fillMovieForm(MovieData movie) {
+        type(By.name("imdbid"), movie.getNumber());
+        type(By.name("name"), movie.getTitle());
+        type(By.name("year"), movie.getYear());
+        type(By.name("duration"), movie.getDuration());
     }
 }

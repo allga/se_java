@@ -4,13 +4,13 @@ package org.allga.model;
  * Created by Olga on 29.03.2016.
  */
 public class MovieData {
-    private String imdbID;
-    private int number;
+    private String imdbSearch;
+    private String number;
     private String title;
     private String knownAs;
-    private int year;
-    private int duration;
-    private int rating;
+    private String year;
+    private String duration;
+    private String rating;
     private String format;
     private boolean ownMovie;
     private boolean alreadySeen;
@@ -32,20 +32,20 @@ public class MovieData {
     private String music;
     private String cast;
 
-    public String getImdbID() {
-        return imdbID;
+    public String getImdbSearch() {
+        return imdbSearch;
     }
 
-    public MovieData setImdbID(String imdbID) {
-        this.imdbID = imdbID;
+    public MovieData setImdbSearch(String imdbSearch) {
+        this.imdbSearch = imdbSearch;
         return this;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public MovieData setNumber(int number) {
+    public MovieData setNumber(String number) {
         this.number = number;
         return this;
     }
@@ -68,29 +68,29 @@ public class MovieData {
         return this;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public MovieData setYear(int year) {
+    public MovieData setYear(String year) {
         this.year = year;
         return this;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public MovieData setDuration(int duration) {
+    public MovieData setDuration(String duration) {
         this.duration = duration;
         return this;
     }
 
-    public int getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public MovieData setRating(int rating) {
+    public MovieData setRating(String rating) {
         this.rating = rating;
         return this;
     }
