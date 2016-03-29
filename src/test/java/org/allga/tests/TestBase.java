@@ -2,6 +2,7 @@ package org.allga.tests;
 
 import java.util.concurrent.TimeUnit;
 
+import org.allga.helpers.HelperBase;
 import org.allga.helpers.MovieHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -19,7 +20,9 @@ import org.allga.util.PropertyLoader;
 public class TestBase {
 	protected WebDriver driver;
 
-	protected MovieHelper movieHelper;
+	private MovieHelper movieHelper;
+	private HelperBase helperBase;
+
 	protected String gridHubUrl;
 
 	protected String baseUrl;
@@ -44,6 +47,7 @@ public class TestBase {
 		}
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		movieHelper = new MovieHelper(driver);
+		helperBase = new HelperBase(driver);
 		login("admin", "admin");
 	}
 
@@ -60,10 +64,14 @@ public class TestBase {
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.name("password")).clear();
         driver.findElement(By.name("password")).sendKeys(password);
-		movieHelper.click(By.name("submit"));
+		getHelperBase().click(By.name("submit"));
 	}
 
 	public MovieHelper getMovieHelper() {
 		return movieHelper;
+	}
+
+	public HelperBase getHelperBase() {
+		return helperBase;
 	}
 }

@@ -16,10 +16,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class MovieDeletionTests extends TestBase {
 
     @Test
-    public void testDeletionMovie() {
+    public void testDeletionMovie()  {
         List<WebElement> before = new ArrayList<WebElement>(driver.findElements(By.cssSelector("div.movie_box")));
         before.get(0).click();
-        movieHelper.click(By.xpath("//*[@class='button']//a[.//img[@title=\"Remove\"]]"));
+        getHelperBase().click(By.xpath("//*[@class='button']//a[.//img[@title=\"Remove\"]]"));
         driver.switchTo().alert().accept();
         List<WebElement> after = new ArrayList<WebElement>(driver.findElements(By.cssSelector("a[href*=\"go=movie&id\"]")));
         assertThat(after.size(), equalTo(before.size() - 1));

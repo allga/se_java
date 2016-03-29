@@ -9,28 +9,13 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by Olga on 29.03.2016.
  */
-public class MovieHelper {
+public class MovieHelper extends HelperBase {
 
-    protected WebDriver driver;
-    private boolean acceptNextAlert = true;
+    private boolean acceptNextAlert;
 
     public MovieHelper(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public void click(By locator) {
-        driver.findElement(locator).click();
-    }
-
-    public void type(By locator, String text) {
-        click(locator);
-        if (text != null) {
-            String existingText = driver.findElement(locator).getAttribute("value");
-            if (!text.equals(existingText)) {
-                driver.findElement(locator).clear();
-                driver.findElement(locator).sendKeys(text);
-            }
-        }
+        super(driver);
+        acceptNextAlert = true;
     }
 
     public boolean isElementPresent(By by) {
