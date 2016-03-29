@@ -36,216 +36,243 @@ public class MovieData {
         return imdbID;
     }
 
-    public void setImdbID(String imdbID) {
+    public MovieData setImdbID(String imdbID) {
         this.imdbID = imdbID;
+        return this;
     }
 
     public int getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public MovieData setNumber(int number) {
         this.number = number;
+        return this;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public MovieData setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public String getKnownAs() {
         return knownAs;
     }
 
-    public void setKnownAs(String knownAs) {
+    public MovieData setKnownAs(String knownAs) {
         this.knownAs = knownAs;
+        return this;
     }
 
     public int getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public MovieData setYear(int year) {
         this.year = year;
+        return this;
     }
 
     public int getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public MovieData setDuration(int duration) {
         this.duration = duration;
+        return this;
     }
 
     public int getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public MovieData setRating(int rating) {
         this.rating = rating;
+        return this;
     }
 
     public String getFormat() {
         return format;
     }
 
-    public void setFormat(String format) {
+    public MovieData setFormat(String format) {
         this.format = format;
+        return this;
     }
 
     public boolean isOwnMovie() {
         return ownMovie;
     }
 
-    public void setOwnMovie(boolean ownMovie) {
+    public MovieData setOwnMovie(boolean ownMovie) {
         this.ownMovie = ownMovie;
+        return this;
     }
 
     public boolean isAlreadySeen() {
         return alreadySeen;
     }
 
-    public void setAlreadySeen(boolean alreadySeen) {
+    public MovieData setAlreadySeen(boolean alreadySeen) {
         this.alreadySeen = alreadySeen;
+        return this;
     }
 
     public boolean isLoanedOut() {
         return loanedOut;
     }
 
-    public void setLoanedOut(boolean loanedOut) {
+    public MovieData setLoanedOut(boolean loanedOut) {
         this.loanedOut = loanedOut;
+        return this;
     }
 
     public String getTrailerUrl() {
         return trailerUrl;
     }
 
-    public void setTrailerUrl(String trailerUrl) {
+    public MovieData setTrailerUrl(String trailerUrl) {
         this.trailerUrl = trailerUrl;
+        return this;
     }
 
     public String getPersonalNotes() {
         return personalNotes;
     }
 
-    public void setPersonalNotes(String personalNotes) {
+    public MovieData setPersonalNotes(String personalNotes) {
         this.personalNotes = personalNotes;
+        return this;
     }
 
     public String getTaglines() {
         return taglines;
     }
 
-    public void setTaglines(String taglines) {
+    public MovieData setTaglines(String taglines) {
         this.taglines = taglines;
+        return this;
     }
 
     public String getPlotOutline() {
         return plotOutline;
     }
 
-    public void setPlotOutline(String plotOutline) {
+    public MovieData setPlotOutline(String plotOutline) {
         this.plotOutline = plotOutline;
+        return this;
     }
 
     public String getPlots() {
         return plots;
     }
 
-    public void setPlots(String plots) {
+    public MovieData setPlots(String plots) {
         this.plots = plots;
+        return this;
     }
 
     public String getLanguages() {
         return languages;
     }
 
-    public void setLanguages(String languages) {
+    public MovieData setLanguages(String languages) {
         this.languages = languages;
+        return this;
     }
 
     public String getSubtitles() {
         return subtitles;
     }
 
-    public void setSubtitles(String subtitles) {
+    public MovieData setSubtitles(String subtitles) {
         this.subtitles = subtitles;
+        return this;
     }
 
     public String getAudio() {
         return audio;
     }
 
-    public void setAudio(String audio) {
+    public MovieData setAudio(String audio) {
         this.audio = audio;
+        return this;
     }
 
     public String getVideo() {
         return video;
     }
 
-    public void setVideo(String video) {
+    public MovieData setVideo(String video) {
         this.video = video;
+        return this;
     }
 
     public String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public MovieData setCountry(String country) {
         this.country = country;
+        return this;
     }
 
     public String getGenres() {
         return genres;
     }
 
-    public void setGenres(String genres) {
+    public MovieData setGenres(String genres) {
         this.genres = genres;
+        return this;
     }
 
     public String getDirector() {
         return director;
     }
 
-    public void setDirector(String director) {
+    public MovieData setDirector(String director) {
         this.director = director;
+        return this;
     }
 
     public String getWriter() {
         return writer;
     }
 
-    public void setWriter(String writer) {
+    public MovieData setWriter(String writer) {
         this.writer = writer;
+        return this;
     }
 
     public String getProducer() {
         return producer;
     }
 
-    public void setProducer(String producer) {
+    public MovieData setProducer(String producer) {
         this.producer = producer;
+        return this;
     }
 
     public String getMusic() {
         return music;
     }
 
-    public void setMusic(String music) {
+    public MovieData setMusic(String music) {
         this.music = music;
+        return this;
     }
 
     public String getCast() {
         return cast;
     }
 
-    public void setCast(String cast) {
+    public MovieData setCast(String cast) {
         this.cast = cast;
+        return this;
     }
 
 }
