@@ -14,11 +14,15 @@ public class MovieHelper {
     protected WebDriver driver;
     private boolean acceptNextAlert = true;
 
-    protected void click(By locator) {
+    public MovieHelper(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void click(By locator) {
         driver.findElement(locator).click();
     }
 
-    protected void type(By locator, String text) {
+    public void type(By locator, String text) {
         click(locator);
         if (text != null) {
             String existingText = driver.findElement(locator).getAttribute("value");
@@ -29,7 +33,7 @@ public class MovieHelper {
         }
     }
 
-    private boolean isElementPresent(By by) {
+    public boolean isElementPresent(By by) {
         try {
             driver.findElement(by);
             return true;
@@ -38,7 +42,7 @@ public class MovieHelper {
         }
     }
 
-    private String closeAlertAndGetItsText() {
+    public String closeAlertAndGetItsText() {
         try {
             Alert alert = driver.switchTo().alert();
             String alertText = alert.getText();
@@ -53,7 +57,7 @@ public class MovieHelper {
         }
     }
 
-    protected void fillMovieForm(MovieData movie) {
+    public void fillMovieForm(MovieData movie) {
         type(By.name("imdbid"), movie.getNumber());
         type(By.name("name"), movie.getTitle());
         type(By.name("year"), movie.getYear());

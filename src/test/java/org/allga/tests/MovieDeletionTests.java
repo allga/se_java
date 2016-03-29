@@ -19,7 +19,7 @@ public class MovieDeletionTests extends TestBase {
     public void testDeletionMovie() {
         List<WebElement> before = new ArrayList<WebElement>(driver.findElements(By.cssSelector("div.movie_box")));
         before.get(0).click();
-        click(By.xpath("//*[@class='button']//a[.//img[@title=\"Remove\"]]"));
+        movieHelper.click(By.xpath("//*[@class='button']//a[.//img[@title=\"Remove\"]]"));
         driver.switchTo().alert().accept();
         List<WebElement> after = new ArrayList<WebElement>(driver.findElements(By.cssSelector("a[href*=\"go=movie&id\"]")));
         assertThat(after.size(), equalTo(before.size() - 1));

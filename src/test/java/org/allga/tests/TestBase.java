@@ -16,8 +16,10 @@ import org.allga.util.PropertyLoader;
 /**
  * Base class for all the TestNG-based test classes
  */
-public class TestBase extends MovieHelper {
+public class TestBase {
+	protected WebDriver driver;
 
+	protected MovieHelper movieHelper;
 	protected String gridHubUrl;
 
 	protected String baseUrl;
@@ -41,6 +43,7 @@ public class TestBase extends MovieHelper {
 			driver = WebDriverFactory.getDriver(capabilities);
 		}
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		movieHelper = new MovieHelper(driver);
 		login("admin", "admin");
 	}
 
@@ -57,7 +60,10 @@ public class TestBase extends MovieHelper {
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.name("password")).clear();
         driver.findElement(By.name("password")).sendKeys(password);
-		click(By.name("submit"));
+		movieHelper.click(By.name("submit"));
 	}
 
+	public MovieHelper getMovieHelper() {
+		return movieHelper;
+	}
 }

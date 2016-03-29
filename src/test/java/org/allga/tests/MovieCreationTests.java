@@ -14,19 +14,19 @@ public class MovieCreationTests extends TestBase {
 
     @Test
     public void testPositiveCreationMovie() {
-        click(By.cssSelector("a[href=\"./?go=add\"]"));
+        movieHelper.click(By.cssSelector("a[href=\"./?go=add\"]"));
         MovieData movie = new MovieData().setNumber("0711111").setTitle("Miles Ahead").setYear("2015").setDuration("100");
-        fillMovieForm(movie);
-        click(By.name("submit"));
+        movieHelper.fillMovieForm(movie);
+        movieHelper.click(By.name("submit"));
         assertThat((driver.getCurrentUrl()), containsString("php4dvd/?go=movie&id="));
     }
 
     @Test
     public void testRequiredFieldCreationMovie() {
-        click(By.cssSelector("a[href=\"./?go=add\"]"));
+        movieHelper.click(By.cssSelector("a[href=\"./?go=add\"]"));
         MovieData movie = new MovieData().setNumber("0711111").setYear("2015").setDuration("100");
-        fillMovieForm(movie);
-        click(By.name("submit"));
+        movieHelper.fillMovieForm(movie);
+        movieHelper.click(By.name("submit"));
         assertThat((driver.getCurrentUrl()), containsString("php4dvd/?go=add"));
     }
 
