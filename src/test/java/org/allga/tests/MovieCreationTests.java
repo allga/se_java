@@ -4,9 +4,7 @@ import org.allga.model.MovieData;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import static com.sun.jmx.snmp.ThreadContext.contains;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
