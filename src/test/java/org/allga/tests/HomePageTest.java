@@ -1,4 +1,4 @@
-package org.allga;
+package org.allga.tests;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;

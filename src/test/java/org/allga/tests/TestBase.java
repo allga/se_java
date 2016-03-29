@@ -1,4 +1,4 @@
-package org.allga;
+package org.allga.tests;
 
 import java.util.concurrent.TimeUnit;
 

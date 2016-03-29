@@ -1,4 +1,4 @@
-package org.allga;
+package org.allga.tests;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
