@@ -2,8 +2,7 @@ package org.allga.tests;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import org.testng.annotations.AfterSuite;
@@ -22,6 +21,7 @@ public class TestBase {
 	protected String gridHubUrl;
 
 	protected String baseUrl;
+	private boolean acceptNextAlert = true;
 
 	@BeforeClass
 	public void init() {
@@ -50,4 +50,37 @@ public class TestBase {
 			WebDriverFactory.dismissDriver(driver);
 		}
 	}
+
+	protected void login(String username, String password) {
+        driver.get(baseUrl + "php4dvd/");
+        driver.findElement(By.id("username")).clear();
+        driver.findElement(By.id("username")).sendKeys(username);
+        driver.findElement(By.name("password")).clear();
+        driver.findElement(By.name("password")).sendKeys(password);
+        driver.findElement(By.name("submit")).click();
+    }
+
+	private boolean isElementPresent(By by) {
+        try {
+            driver.findElement(by);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+	private String closeAlertAndGetItsText() {
+        try {
+            Alert alert = driver.switchTo().alert();
+            String alertText = alert.getText();
+            if (acceptNextAlert) {
+                alert.accept();
+            } else {
+                alert.dismiss();
+            }
+            return alertText;
+        } finally {
+            acceptNextAlert = true;
+        }
+    }
 }
