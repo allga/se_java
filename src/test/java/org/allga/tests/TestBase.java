@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.allga.helpers.HelperBase;
 import org.allga.helpers.MovieHelper;
+import org.allga.helpers.NavigationHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
