@@ -275,4 +275,13 @@ public class MovieData {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "MovieData{" +
+                "title='" + title + '\'' +
+                ", year='" + year + '\'' +
+                ", number='" + number + '\'' +
+                ", duration='" + duration + '\'' +
+                '}';
+    }
 }
