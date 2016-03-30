@@ -18,9 +18,9 @@ public class MovieHelper extends HelperBase {
         acceptNextAlert = true;
     }
 
-    public boolean isElementPresent(By by) {
+    public boolean isElementPresent(By locator) {
         try {
-            driver.findElement(by);
+            driver.findElement(locator);
             return true;
         } catch (NoSuchElementException e) {
             return false;
@@ -63,4 +63,7 @@ public class MovieHelper extends HelperBase {
     }
 
 
+    public void submitCreationMovie() {
+        click(By.name("submit"));
+    }
 }
