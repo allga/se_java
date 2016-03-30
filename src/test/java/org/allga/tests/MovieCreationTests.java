@@ -1,10 +1,10 @@
 package org.allga.tests;
 
 import org.allga.model.MovieData;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -14,20 +14,35 @@ public class MovieCreationTests extends TestBase {
 
     @Test
     public void testPositiveCreationMovie() {
-        getHelperBase().click(By.cssSelector("a[href=\"./?go=add\"]"));
+        getNavigationHelper().goToHomePage();
+        int before = getMovieHelper().countAllMovies();
+
+        getNavigationHelper().goToAddMoviePage();
         MovieData movie = new MovieData().setNumber("0711111").setTitle("Miles Ahead").setYear("2015").setDuration("100");
         getMovieHelper().fillMovieForm(movie);
-        getHelperBase().click(By.name("submit"));
+        getMovieHelper().submitCreationMovie();
         assertThat((driver.getCurrentUrl()), containsString("php4dvd/?go=movie&id="));
+
+        getNavigationHelper().goToHomePage();
+        int after = getMovieHelper().countAllMovies();
+        assertThat(after, equalTo(before + 1));
+
     }
 
     @Test
     public void testRequiredFieldCreationMovie() {
-        getHelperBase().click(By.cssSelector("a[href=\"./?go=add\"]"));
+        getNavigationHelper().goToHomePage();
+        int before = getMovieHelper().countAllMovies();
+
+        getNavigationHelper().goToAddMoviePage();
         MovieData movie = new MovieData().setNumber("0711111").setYear("2015").setDuration("100");
         getMovieHelper().fillMovieForm(movie);
-        getHelperBase().click(By.name("submit"));
+        getMovieHelper().submitCreationMovie();
         assertThat((driver.getCurrentUrl()), containsString("php4dvd/?go=add"));
+
+        getNavigationHelper().goToHomePage();
+        int after = getMovieHelper().countAllMovies();
+        assertThat(after, equalTo(before));
     }
 
 }
