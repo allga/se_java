@@ -1,6 +1,5 @@
-package org.allga.tests;
+package org.allga.helpers;
 
-import org.allga.helpers.HelperBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
