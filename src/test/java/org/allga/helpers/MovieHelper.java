@@ -1,10 +1,10 @@
 package org.allga.helpers;
 
 import org.allga.model.MovieData;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Olga on 29.03.2016.
@@ -48,4 +48,19 @@ public class MovieHelper extends HelperBase {
         type(By.name("year"), movie.getYear());
         type(By.name("duration"), movie.getDuration());
     }
+
+    public  List<WebElement> allMovies (){
+        return new ArrayList<WebElement>(driver.findElements(By.cssSelector("div.movie_box")));
+    }
+
+    public  int countAllMovies (){
+        return allMovies().size();
+    }
+
+    public void deleteMovie() {
+        click(By.xpath("//*[@class='button']//a[.//img[@title=\"Remove\"]]"));
+        driver.switchTo().alert().accept();
+    }
+
+
 }

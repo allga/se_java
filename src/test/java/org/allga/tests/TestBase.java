@@ -18,10 +18,12 @@ import org.allga.util.PropertyLoader;
  * Base class for all the TestNG-based test classes
  */
 public class TestBase {
-	protected WebDriver driver;
+
+    protected WebDriver driver;
 
 	private MovieHelper movieHelper;
 	private HelperBase helperBase;
+    private NavigationHelper navigationHelper;
 
 	protected String gridHubUrl;
 
@@ -48,6 +50,7 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		movieHelper = new MovieHelper(driver);
 		helperBase = new HelperBase(driver);
+        navigationHelper = new NavigationHelper(driver);
 		login("admin", "admin");
 	}
 
@@ -74,4 +77,8 @@ public class TestBase {
 	public HelperBase getHelperBase() {
 		return helperBase;
 	}
+
+    public NavigationHelper getNavigationHelper() {
+        return navigationHelper;
+    }
 }
