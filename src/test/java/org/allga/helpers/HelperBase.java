@@ -18,7 +18,7 @@ public class HelperBase {
         driver.findElement(locator).click();
     }
 
-    protected void type(By locator, String text) {
+    public void type(By locator, String text) {
         click(locator);
         if (text != null) {
             String existingText = driver.findElement(locator).getAttribute("value");
