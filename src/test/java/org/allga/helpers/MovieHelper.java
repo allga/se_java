@@ -2,7 +2,6 @@ package org.allga.helpers;
 
 import org.allga.model.MovieData;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,11 +49,11 @@ public class MovieHelper extends HelperBase {
         type(By.name("duration"), movie.getDuration());
     }
 
-    public  List<WebElement> allMovies (){
+    public List<WebElement> allMovies() {
         return new ArrayList<WebElement>(driver.findElements(By.cssSelector("div.movie_box")));
     }
 
-    public  List<MovieData> getAllMovies (){
+    public List<MovieData> getAllMovies() {
         List<MovieData> movies = new ArrayList<MovieData>();
         List<WebElement> elements = new ArrayList<WebElement>(driver.findElements(By.cssSelector("div.movie_box")));
         for (WebElement el : elements) {
@@ -64,7 +63,7 @@ public class MovieHelper extends HelperBase {
         return movies;
     }
 
-    public  int countAllMovies (){
+    public int countAllMovies() {
         return allMovies().size();
     }
 
@@ -81,9 +80,8 @@ public class MovieHelper extends HelperBase {
     public List<MovieData> searchMovie(String movie) {
         type(By.id("q"), movie);
         submitSearch();
-        List<MovieData> movies = getAllMovies();
-        return movies;
-
+        driver.navigate().refresh();
+        return getAllMovies();
     }
 
     private void submitSearch() {
