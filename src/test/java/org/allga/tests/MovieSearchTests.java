@@ -2,6 +2,8 @@ package org.allga.tests;
 
 import org.allga.model.MovieData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ public class MovieSearchTests extends TestBase {
     @Test
     public void testFoundMovies() {
         getNavigationHelper().goToHomePage();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.movie_box")));
         MovieData movie = getMovieHelper().getAllMovies().get(0);
         final String title = movie.getTitle();
         List<MovieData> foundMovies = getMovieHelper().searchMovie(title);

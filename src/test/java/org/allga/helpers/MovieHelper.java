@@ -82,10 +82,8 @@ public class MovieHelper extends HelperBase {
     public List<MovieData> searchMovie(String movie) {
         type(By.id("q"), movie);
         submitSearch();
-        System.out.println("start");
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector("div.title"))));
-        System.out.println("stop");
         return getAllMovies();
     }
 
