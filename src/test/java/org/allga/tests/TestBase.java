@@ -48,7 +48,7 @@ public class TestBase {
 		} else {
 			driver = WebDriverFactory.getDriver(capabilities);
 		}
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		movieHelper = new MovieHelper(driver);
 		helperBase = new HelperBase(driver);
         navigationHelper = new NavigationHelper(driver);
