@@ -2,6 +2,8 @@ package org.allga.helpers;
 
 import org.allga.model.MovieData;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +82,10 @@ public class MovieHelper extends HelperBase {
     public List<MovieData> searchMovie(String movie) {
         type(By.id("q"), movie);
         submitSearch();
-        driver.navigate().refresh();
+        System.out.println("start");
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector("div.title"))));
+        System.out.println("stop");
         return getAllMovies();
     }
 
