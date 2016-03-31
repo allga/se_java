@@ -1,8 +1,10 @@
 package org.allga.tests;
 
 import org.allga.model.MovieData;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -29,5 +31,11 @@ public class MovieSearchTests extends TestBase {
 
     @Test
     public void testNotFoundMovies() {
+        getNavigationHelper().goToHomePage();
+        final String unrealTitle = "000000000000";
+        List<MovieData> foundUnrealMovies = getMovieHelper().searchMovie(unrealTitle);
+        assertThat(foundUnrealMovies.size(), equalTo(0));
+        String founded = driver.findElement(By.cssSelector("div.content")).getText();
+        assertThat(founded, equalTo("No movies where found."));
     }
 }
