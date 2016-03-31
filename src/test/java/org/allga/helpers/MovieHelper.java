@@ -76,18 +76,21 @@ public class MovieHelper extends HelperBase {
 
 
     public void submitCreationMovie() {
-        click(By.name("submit"));
+        click(By.id("submit"));
     }
 
     public List<MovieData> searchMovie(String movie) {
         type(By.id("q"), movie);
         submitSearch();
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector("div.title"))));
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector("div.title"))));
         return getAllMovies();
     }
 
     private void submitSearch() {
         driver.findElement(By.id("q")).sendKeys(Keys.ENTER);
+    }
+
+    public void waitMovies() {
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.movie_box")));
     }
 }

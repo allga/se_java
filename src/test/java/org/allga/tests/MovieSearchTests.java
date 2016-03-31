@@ -2,13 +2,11 @@ package org.allga.tests;
 
 import org.allga.model.MovieData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -22,14 +20,13 @@ public class MovieSearchTests extends TestBase {
     @Test
     public void testFoundMovies() {
         getNavigationHelper().goToHomePage();
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.movie_box")));
+        getMovieHelper().waitMovies();
         MovieData movie = getMovieHelper().getAllMovies().get(0);
         final String title = movie.getTitle();
         List<MovieData> foundMovies = getMovieHelper().searchMovie(title);
         assertThat(foundMovies.size(), not(0));
         for (MovieData m : foundMovies) {
-            assertThat(m.getTitle(), equalTo(title));
+            assertThat(m.getTitle(), containsString(title));
         }
     }
 
