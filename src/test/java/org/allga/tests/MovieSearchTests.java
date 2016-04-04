@@ -20,7 +20,6 @@ public class MovieSearchTests extends TestBase {
     @Test
     public void testFoundMovies() {
         getNavigationHelper().goToHomePage();
-        getMovieHelper().waitMovies();
         MovieData movie = getMovieHelper().getAllMovies().get(0);
         final String title = movie.getTitle();
         boolean result = getMovieHelper().foundMovies(title);

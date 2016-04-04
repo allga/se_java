@@ -57,6 +57,7 @@ public class MovieHelper extends HelperBase {
 
     public List<MovieData> getAllMovies() {
         List<MovieData> movies = new ArrayList<MovieData>();
+        waitMovies();
         List<WebElement> elements = new ArrayList<WebElement>(driver.findElements(By.cssSelector("div.movie_box")));
         for (WebElement el : elements) {
             String title = el.findElement(By.cssSelector("div.title")).getText();
@@ -98,6 +99,6 @@ public class MovieHelper extends HelperBase {
     }
 
     public void waitMovies() {
-        (new WebDriverWait(driver, 5)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.movie_box")));
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("div.movie_box")));
     }
 }

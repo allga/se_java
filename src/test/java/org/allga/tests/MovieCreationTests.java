@@ -1,6 +1,7 @@
 package org.allga.tests;
 
 import org.allga.model.MovieData;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -17,8 +18,6 @@ public class MovieCreationTests extends TestBase {
 
     @Test
     public void testPositiveCreationMovie() {
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
         getNavigationHelper().goToHomePage();
         List<MovieData> moviesBefore = getMovieHelper().getAllMovies();
 
@@ -42,11 +41,12 @@ public class MovieCreationTests extends TestBase {
         List<MovieData> moviesBefore = getMovieHelper().getAllMovies();
 
         getNavigationHelper().goToAddMoviePage();
-        MovieData movie = new MovieData().setNumber("0711111").setYear("2015").setDuration("100");
+        MovieData movie = new MovieData().setNumber("0711111").setTitle("The Game").setDuration("100");
         getMovieHelper().fillMovieForm(movie);
         getMovieHelper().submitCreationMovie();
+        boolean requiredFild = getMovieHelper().isElementPresent(By.cssSelector("input.error"));
 
-        assertThat((driver.getCurrentUrl()), containsString("php4dvd/?go=add"));
+        assertThat(requiredFild, equalTo(true));
 
         getNavigationHelper().goToHomePage();
         List<MovieData> moviesAfter = getMovieHelper().getAllMovies();
