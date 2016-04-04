@@ -23,9 +23,10 @@ public class MovieSearchTests extends TestBase {
         getMovieHelper().waitMovies();
         MovieData movie = getMovieHelper().getAllMovies().get(0);
         final String title = movie.getTitle();
-        List<MovieData> foundMovies = getMovieHelper().searchMovie(title);
-        assertThat(foundMovies.size(), not(0));
-        for (MovieData m : foundMovies) {
+        boolean result = getMovieHelper().foundMovies(title);
+        assertThat(result, equalTo(true));
+        List<MovieData> searchResult = getMovieHelper().getAllMovies();
+        for (MovieData m : searchResult) {
             assertThat(m.getTitle(), containsString(title));
         }
     }
@@ -34,8 +35,8 @@ public class MovieSearchTests extends TestBase {
     public void testNotFoundMovies() {
         getNavigationHelper().goToHomePage();
         final String unrealTitle = "000000000000";
-        List<MovieData> foundUnrealMovies = getMovieHelper().searchMovie(unrealTitle);
-        assertThat(foundUnrealMovies.size(), equalTo(0));
+        boolean result = getMovieHelper().foundMovies(unrealTitle);
+        assertThat(result, equalTo(false));
         String founded = driver.findElement(By.cssSelector("div.content")).getText();
         assertThat(founded, equalTo("No movies where found."));
     }
