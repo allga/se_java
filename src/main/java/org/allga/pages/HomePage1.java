@@ -9,7 +9,7 @@ import org.openqa.selenium.support.How;
 /**
  * Sample page
  */
-public class HomePage extends Page {
+public class HomePage1 extends Page1 {
 
 	private final String H1_TAG = "h1";
 	
@@ -17,7 +17,7 @@ public class HomePage extends Page {
 	@CacheLookup
 	private WebElement h1Element;
 	
-	public HomePage(WebDriver webDriver) {
+	public HomePage1(WebDriver webDriver) {
 		super(webDriver);
 	}
 	
