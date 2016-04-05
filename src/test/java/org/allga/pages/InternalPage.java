@@ -9,38 +9,38 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 
 public class InternalPage extends AnyPage {
 
-	public InternalPage(PageManager pages) {
-		super(pages);
-	}
-	
-  public InternalPage ensurePageLoaded() {
-    super.ensurePageLoaded();
-    wait.until(presenceOfElementLocated(By.cssSelector("nav")));
-    return this;
-  }
-  
-  @FindBy(css = "nav a[href $= '?go=profile']")
-  private WebElement userProfileLink;
+    public InternalPage(PageManager pages) {
+        super(pages);
+    }
 
-  @FindBy(css = "nav a[href $= '?go=users']")
-  private WebElement userManagementLink;
+    public InternalPage ensurePageLoaded() {
+        super.ensurePageLoaded();
+        wait.until(presenceOfElementLocated(By.cssSelector("nav")));
+        return this;
+    }
 
-  @FindBy(css = "nav a[onclick $= '?logout']")
-  private WebElement logoutLink;
-  
-  public UserProfilePage clickUserProfilePage() {
-    userProfileLink.click();
-    return pages.userProfilePage;
-  }
+    @FindBy(css = "nav a[href $= '?go=profile']")
+    private WebElement userProfileLink;
 
-  public UserManagementPage clickUserManagementLink() {
-    userManagementLink.click();
-    return pages.userManagementPage;
-  }
-  
-  public LoginPage clickLogoutLink() {
-    logoutLink.click();
-    wait.until(alertIsPresent()).accept();
-    return pages.loginPage;
-  }
+    @FindBy(css = "nav a[href $= '?go=users']")
+    private WebElement userManagementLink;
+
+    @FindBy(css = "nav a[onclick $= '?logout']")
+    private WebElement logoutLink;
+
+    public UserProfilePage clickUserProfilePage() {
+        userProfileLink.click();
+        return pages.userProfilePage;
+    }
+
+    public UserManagementPage clickUserManagementLink() {
+        userManagementLink.click();
+        return pages.userManagementPage;
+    }
+
+    public LoginPage clickLogoutLink() {
+        logoutLink.click();
+        wait.until(alertIsPresent()).accept();
+        return pages.loginPage;
+    }
 }

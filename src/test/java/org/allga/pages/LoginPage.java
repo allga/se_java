@@ -8,36 +8,36 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 
 public class LoginPage extends AnyPage {
 
-	public LoginPage(PageManager pages) {
-		super(pages);
-	}
+    public LoginPage(PageManager pages) {
+        super(pages);
+    }
 
-	@FindBy(name = "username")
-	private WebElement usernameField;
+    @FindBy(name = "username")
+    private WebElement usernameField;
 
-  @FindBy(name = "password")
-  private WebElement passwordField;
+    @FindBy(name = "password")
+    private WebElement passwordField;
 
-  @FindBy(name = "submit")
-  private WebElement submitButton;
-  
-  public LoginPage setUsernameField(String text) {
-    usernameField.sendKeys(text);
-    return this;
-  }
+    @FindBy(name = "submit")
+    private WebElement submitButton;
 
-  public LoginPage setPasswordField(String text) {
-    passwordField.sendKeys(text);
-    return this;
-  }
+    public LoginPage setUsernameField(String text) {
+        usernameField.sendKeys(text);
+        return this;
+    }
 
-  public void clickSubmitButton() {
-    submitButton.click();
-  }
+    public LoginPage setPasswordField(String text) {
+        passwordField.sendKeys(text);
+        return this;
+    }
 
-  public LoginPage ensurePageLoaded() {
-    super.ensurePageLoaded();
-    wait.until(presenceOfElementLocated(By.id("loginform")));
-    return this;
-  }
+    public void clickSubmitButton() {
+        submitButton.click();
+    }
+
+    public LoginPage ensurePageLoaded() {
+        super.ensurePageLoaded();
+        wait.until(presenceOfElementLocated(By.cssSelector("div.addmovie")));
+        return this;
+    }
 }
