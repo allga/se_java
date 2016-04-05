@@ -13,13 +13,18 @@ import java.util.concurrent.TimeUnit;
  * Created by Olga on 05.04.2016.
  */
 public class ApplicationManager {
-    public WebDriver driver;
+
+    private WebDriver driver;
     protected String gridHubUrl;
     public String baseUrl;
 
     private MovieHelper movieHelper;
-    private HelperBase helperBase;
+    private BaseHelper baseHelper;
     private NavigationHelper navigationHelper;
+
+    public WebDriver getDriver() {
+        return driver;
+    }
 
     public void setUp() {
         baseUrl = PropertyLoader.loadProperty("site.url");
@@ -39,9 +44,9 @@ public class ApplicationManager {
             driver = WebDriverFactory.getDriver(capabilities);
         }
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        movieHelper = new MovieHelper(driver);
-        helperBase = new HelperBase(driver);
-        navigationHelper = new NavigationHelper(driver);
+        movieHelper = new MovieHelper(this);
+        baseHelper = new BaseHelper(driver);
+        navigationHelper = new NavigationHelper(this);
         login("admin", "admin");
     }
 
@@ -53,17 +58,17 @@ public class ApplicationManager {
 
     protected void login(String username, String password) {
         driver.get(baseUrl + "php4dvd/");
-        getHelperBase().type(By.id("username"), username);
-        getHelperBase().type(By.name("password"), password);
-        getHelperBase().click(By.name("submit"));
+        getBaseHelper().type(By.id("username"), username);
+        getBaseHelper().type(By.name("password"), password);
+        getBaseHelper().click(By.name("submit"));
     }
 
     public MovieHelper getMovieHelper() {
         return movieHelper;
     }
 
-    public HelperBase getHelperBase() {
-        return helperBase;
+    public BaseHelper getBaseHelper() {
+        return baseHelper;
     }
 
     public NavigationHelper getNavigationHelper() {

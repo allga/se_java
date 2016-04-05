@@ -36,7 +36,7 @@ public class MovieSearchTests extends TestBase {
         final String unrealTitle = "000000000000";
         boolean result = app.getMovieHelper().foundMovies(unrealTitle);
         assertThat(result, equalTo(false));
-        String founded = app.driver.findElement(By.cssSelector("div.content")).getText();
+        String founded = app.getDriver().findElement(By.cssSelector("div.content")).getText();
         assertThat(founded, equalTo("No movies where found."));
     }
 }

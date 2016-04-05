@@ -24,7 +24,7 @@ public class MovieDeletionTests extends TestBase {
         app.getMovieHelper().allMovies().get(0).click();
         app.getMovieHelper().deleteMovie();
 
-        (new WebDriverWait(app.driver, 5)).until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")));
+        (new WebDriverWait(app.getDriver(), 5)).until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")));
 
         app.getNavigationHelper().goToHomePage();
         List<MovieData> moviesAfter = app.getMovieHelper().getAllMovies();

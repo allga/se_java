@@ -6,10 +6,14 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by Olga on 29.03.2016.
  */
-public class NavigationHelper extends HelperBase {
+public class NavigationHelper extends BaseHelper {
 
     public NavigationHelper (WebDriver driver) {
         super(driver);
+    }
+
+    public NavigationHelper(ApplicationManager manager) {
+        super(manager.getDriver());
     }
 
     public void goToAddMoviePage() {

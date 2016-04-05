@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /*
- * Abstract class representation of a Page in the UI. Page object pattern
+ * Abstract class representation of a Page1 in the UI. Page1 object pattern
  * 
  * @author Sebastiano Armeli-Battana
  */

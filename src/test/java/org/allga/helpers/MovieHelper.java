@@ -11,13 +11,17 @@ import java.util.List;
 /**
  * Created by Olga on 29.03.2016.
  */
-public class MovieHelper extends HelperBase {
+public class MovieHelper extends BaseHelper {
 
     private boolean acceptNextAlert;
 
     public MovieHelper(WebDriver driver) {
         super(driver);
         acceptNextAlert = true;
+    }
+
+    public MovieHelper(ApplicationManager manager) {
+        super(manager.getDriver());
     }
 
     public boolean isElementPresent(By locator) {

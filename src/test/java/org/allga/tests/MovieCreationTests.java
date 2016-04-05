@@ -25,7 +25,7 @@ public class MovieCreationTests extends TestBase {
         app.getMovieHelper().fillMovieForm(movie);
         app.getMovieHelper().submitCreationMovie();
 
-        assertThat((app.driver.getCurrentUrl()), containsString("php4dvd/?go=movie&id="));
+        assertThat((app.getDriver().getCurrentUrl()), containsString("php4dvd/?go=movie&id="));
 
         app.getNavigationHelper().goToHomePage();
         List<MovieData> moviesAfter = app.getMovieHelper().getAllMovies();
