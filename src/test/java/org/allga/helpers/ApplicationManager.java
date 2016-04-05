@@ -53,10 +53,8 @@ public class ApplicationManager {
 
     protected void login(String username, String password) {
         driver.get(baseUrl + "php4dvd/");
-        driver.findElement(By.id("username")).clear();
-        driver.findElement(By.id("username")).sendKeys(username);
-        driver.findElement(By.name("password")).clear();
-        driver.findElement(By.name("password")).sendKeys(password);
+        getHelperBase().type(By.id("username"), username);
+        getHelperBase().type(By.name("password"), password);
         getHelperBase().click(By.name("submit"));
     }
 
