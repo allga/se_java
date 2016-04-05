@@ -10,7 +10,7 @@ public class LoginTest extends TestBase {
 
     @Test
     public void testLogin() throws Exception {
-        assertThat((getMovieHelper().isElementPresent(By.cssSelector("a[href*=\"php4dvd/?logout\"]"))), equalTo(true));
+        assertThat((app.getMovieHelper().isElementPresent(By.cssSelector("a[href*=\"php4dvd/?logout\"]"))), equalTo(true));
 
     }
 }

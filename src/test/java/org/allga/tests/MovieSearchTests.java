@@ -19,12 +19,12 @@ public class MovieSearchTests extends TestBase {
 
     @Test
     public void testFoundMovies() {
-        getNavigationHelper().goToHomePage();
-        MovieData movie = getMovieHelper().getAllMovies().get(0);
+        app.getNavigationHelper().goToHomePage();
+        MovieData movie = app.getMovieHelper().getAllMovies().get(0);
         final String title = movie.getTitle();
-        boolean result = getMovieHelper().foundMovies(title);
+        boolean result = app.getMovieHelper().foundMovies(title);
         assertThat(result, equalTo(true));
-        List<MovieData> searchResult = getMovieHelper().getAllMovies();
+        List<MovieData> searchResult = app.getMovieHelper().getAllMovies();
         for (MovieData m : searchResult) {
             assertThat(m.getTitle(), containsString(title));
         }
@@ -32,11 +32,11 @@ public class MovieSearchTests extends TestBase {
 
     @Test
     public void testNotFoundMovies() {
-        getNavigationHelper().goToHomePage();
+        app.getNavigationHelper().goToHomePage();
         final String unrealTitle = "000000000000";
-        boolean result = getMovieHelper().foundMovies(unrealTitle);
+        boolean result = app.getMovieHelper().foundMovies(unrealTitle);
         assertThat(result, equalTo(false));
-        String founded = driver.findElement(By.cssSelector("div.content")).getText();
+        String founded = app.driver.findElement(By.cssSelector("div.content")).getText();
         assertThat(founded, equalTo("No movies where found."));
     }
 }

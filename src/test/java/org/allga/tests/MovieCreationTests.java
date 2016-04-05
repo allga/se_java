@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -18,18 +17,18 @@ public class MovieCreationTests extends TestBase {
 
     @Test
     public void testPositiveCreationMovie() {
-        getNavigationHelper().goToHomePage();
-        List<MovieData> moviesBefore = getMovieHelper().getAllMovies();
+        app.getNavigationHelper().goToHomePage();
+        List<MovieData> moviesBefore = app.getMovieHelper().getAllMovies();
 
-        getNavigationHelper().goToAddMoviePage();
+        app.getNavigationHelper().goToAddMoviePage();
         MovieData movie = new MovieData().setNumber("0711111").setTitle("Miles Ahead").setYear("2015").setDuration("100");
-        getMovieHelper().fillMovieForm(movie);
-        getMovieHelper().submitCreationMovie();
+        app.getMovieHelper().fillMovieForm(movie);
+        app.getMovieHelper().submitCreationMovie();
 
-        assertThat((driver.getCurrentUrl()), containsString("php4dvd/?go=movie&id="));
+        assertThat((app.driver.getCurrentUrl()), containsString("php4dvd/?go=movie&id="));
 
-        getNavigationHelper().goToHomePage();
-        List<MovieData> moviesAfter = getMovieHelper().getAllMovies();
+        app.getNavigationHelper().goToHomePage();
+        List<MovieData> moviesAfter = app.getMovieHelper().getAllMovies();
 
         assertThat(moviesAfter.size(), equalTo(moviesBefore.size() + 1));
 
@@ -37,19 +36,19 @@ public class MovieCreationTests extends TestBase {
 
     @Test
     public void testRequiredFieldCreationMovie() {
-        getNavigationHelper().goToHomePage();
-        List<MovieData> moviesBefore = getMovieHelper().getAllMovies();
+        app.getNavigationHelper().goToHomePage();
+        List<MovieData> moviesBefore = app.getMovieHelper().getAllMovies();
 
-        getNavigationHelper().goToAddMoviePage();
+        app.getNavigationHelper().goToAddMoviePage();
         MovieData movie = new MovieData().setNumber("0711111").setTitle("The Game").setDuration("100");
-        getMovieHelper().fillMovieForm(movie);
-        getMovieHelper().submitCreationMovie();
-        boolean requiredFild = getMovieHelper().isElementPresent(By.cssSelector("input.error"));
+        app.getMovieHelper().fillMovieForm(movie);
+        app.getMovieHelper().submitCreationMovie();
+        boolean requiredFild = app.getMovieHelper().isElementPresent(By.cssSelector("input.error"));
 
         assertThat(requiredFild, equalTo(true));
 
-        getNavigationHelper().goToHomePage();
-        List<MovieData> moviesAfter = getMovieHelper().getAllMovies();
+        app.getNavigationHelper().goToHomePage();
+        List<MovieData> moviesAfter = app.getMovieHelper().getAllMovies();
 
         assertThat(moviesAfter.size(), equalTo(moviesBefore.size()));
     }

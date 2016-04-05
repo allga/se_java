@@ -17,8 +17,8 @@ public class HomePageTest extends TestBase {
 	public void testInit(String path) {
 
 		// Load the page in the browser
-		driver.get(baseUrl + path);
-		homepage = PageFactory.initElements(driver, HomePage.class);
+		app.driver.get(app.baseUrl + path);
+		homepage = PageFactory.initElements(app.driver, HomePage.class);
 	}
 
 	@Test (enabled = false)

@@ -18,16 +18,16 @@ public class MovieDeletionTests extends TestBase {
 
     @Test
     public void testDeletionMovie()  {
-        getNavigationHelper().goToHomePage();
-        List<MovieData> moviesBefore = getMovieHelper().getAllMovies();
+        app.getNavigationHelper().goToHomePage();
+        List<MovieData> moviesBefore = app.getMovieHelper().getAllMovies();
 
-        getMovieHelper().allMovies().get(0).click();
-        getMovieHelper().deleteMovie();
+        app.getMovieHelper().allMovies().get(0).click();
+        app.getMovieHelper().deleteMovie();
 
-        (new WebDriverWait(driver, 5)).until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")));
+        (new WebDriverWait(app.driver, 5)).until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")));
 
-        getNavigationHelper().goToHomePage();
-        List<MovieData> moviesAfter = getMovieHelper().getAllMovies();
+        app.getNavigationHelper().goToHomePage();
+        List<MovieData> moviesAfter = app.getMovieHelper().getAllMovies();
         assertThat(moviesAfter.size(), equalTo(moviesBefore.size() - 1));
     }
 
