@@ -8,20 +8,16 @@ import org.openqa.selenium.WebDriver;
  */
 public class NavigationHelper extends BaseHelper {
 
-    public NavigationHelper (WebDriver driver) {
-        super(driver);
-    }
-
     public NavigationHelper(ApplicationManager manager) {
         super(manager.getDriver());
     }
 
     public void goToAddMoviePage() {
-        click(By.cssSelector("a[href=\"./?go=add\"]"));
+        pages.homePage.clickAddMovie().ensurePageLoaded();
     }
 
     public void goToHomePage() {
-        click(By.tagName("h1"));
+        pages.internalPage.clickHomeLink().ensurePageLoaded();
     }
 
 }
