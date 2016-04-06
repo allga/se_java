@@ -28,6 +28,9 @@ public class InternalPage extends AnyPage {
     @FindBy(css = "nav a[onclick $= '?logout']")
     private WebElement logoutLink;
 
+    @FindBy(css = "nav a[href $= 'php4dvd/']")
+    private WebElement homeLink;
+
     public UserProfilePage clickUserProfilePage() {
         userProfileLink.click();
         return pages.userProfilePage;
@@ -43,4 +46,10 @@ public class InternalPage extends AnyPage {
         wait.until(alertIsPresent()).accept();
         return pages.loginPage;
     }
+
+    public HomePage clickHomeLink() {
+        homeLink.click();
+        return pages.homePage;
+    }
+
 }

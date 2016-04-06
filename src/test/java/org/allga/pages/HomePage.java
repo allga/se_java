@@ -1,34 +1,33 @@
 package org.allga.pages;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 /*
- * Sample page
- * 
- * @author Sebastiano Armeli-Battana
  */
-public class HomePage extends Page {
+public class HomePage extends InternalPage {
 
-	private final String H1_TAG = "h1";
-	
-	@FindBy(how = How.TAG_NAME, using = H1_TAG)
-	@CacheLookup
-	private WebElement h1Element;
+    @FindBy(css = "a[href=\"./?go=add\"]")
+    private WebElement addMovieButton;
 
-	public HomePage(PageManager pages) {
-		super(pages);
-	}
+    public HomePage(PageManager pages) {
+        super(pages);
+    }
 
-//	public HomePage(WebDriver webDriver) {
-//		super(webDriver);
-//	}
-	
-	public String getH1() {
-		return h1Element.getText();
-	}
+    public AddPage clickAddMovie() {
+        addMovieButton.click();
+        return pages.addPage;
+    }
+
+    public HomePage ensurePageLoaded() {
+        super.ensurePageLoaded();
+        wait.until(presenceOfElementLocated(By.id("results")));
+        wait.until(presenceOfAllElementsLocatedBy(By.cssSelector("div.movie_box")));
+        return this;
+    }
 
 }
