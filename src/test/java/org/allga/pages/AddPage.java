@@ -9,7 +9,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 /**
  * Created by Olga on 05.04.2016.
  */
-public class AddPage extends AnyPage {
+public class AddPage extends InternalPage {
 
     public AddPage(PageManager pages) {
         super(pages);
@@ -40,7 +40,7 @@ public class AddPage extends AnyPage {
 
     public AddPage ensurePageLoaded() {
         super.ensurePageLoaded();
-        wait.until(presenceOfElementLocated(By.id("loginform")));
+        wait.until(presenceOfElementLocated(By.id("imdbsearchform")));
         return this;
     }
 
