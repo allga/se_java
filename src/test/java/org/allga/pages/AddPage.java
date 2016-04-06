@@ -24,6 +24,13 @@ public class AddPage extends InternalPage {
     @FindBy(name = "submit")
     private WebElement submit;
 
+    @FindBy(css = "input.error")
+    private WebElement requiredFild;
+
+    public WebElement getRequiredFild() {
+        return requiredFild;
+    }
+
     public void setTitle(String text) {
         title.clear();
         title.sendKeys(text);
@@ -36,6 +43,7 @@ public class AddPage extends InternalPage {
 
     public void clickSubmit() {
         submit.click();
+        super.ensurePageLoaded();
     }
 
     public AddPage ensurePageLoaded() {
