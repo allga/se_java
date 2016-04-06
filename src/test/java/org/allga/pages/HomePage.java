@@ -35,6 +35,11 @@ public class HomePage extends InternalPage {
         return pages.addPage;
     }
 
+    public MoviePage openMovie(int index) {
+        movies.get(index).click();
+        return pages.moviePage;
+    }
+
     public HomePage ensurePageLoaded() {
         super.ensurePageLoaded();
         wait.until(presenceOfElementLocated(By.id("results")));

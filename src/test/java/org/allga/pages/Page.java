@@ -1,7 +1,6 @@
 package org.allga.pages;
 
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /*
@@ -43,4 +42,14 @@ public abstract class Page {
             return false;
         }
     }
+
+//    public boolean isElementPresent(Page Page, WebElement element) {
+//        try {
+//            ensurePageLoaded();
+//            element.isDisplayed();
+//            return true;
+//        } catch (NoSuchElementException e) {
+//            return false;
+//        }
+//    }
 }

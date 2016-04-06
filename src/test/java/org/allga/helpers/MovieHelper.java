@@ -39,6 +39,10 @@ public class MovieHelper extends BaseHelper {
         return pages.homePage.ensurePageLoaded().getMovies();
     }
 
+    public void openDeletedMovie(int index) {
+        pages.homePage.ensurePageLoaded().openMovie(index).ensurePageLoaded();
+    }
+
     public List<MovieData> getAllMovies() {
         List<MovieData> movies = new ArrayList<MovieData>();
         for (WebElement el : allMovies()) {
@@ -49,8 +53,7 @@ public class MovieHelper extends BaseHelper {
     }
 
     public void deleteMovie() {
-        click(By.xpath("//*[@class='button']//a[.//img[@title=\"Remove\"]]"));
-        driver.switchTo().alert().accept();
+        pages.moviePage.clickRemoveButton().ensurePageLoaded();
     }
 
 
