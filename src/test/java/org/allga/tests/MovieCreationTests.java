@@ -40,7 +40,7 @@ public class MovieCreationTests extends TestBase {
         List<MovieData> moviesBefore = app.getMovieHelper().getAllMovies();
 
         app.getNavigationHelper().goToAddMoviePage();
-        MovieData movie = new MovieData().setNumber("0711111").setTitle("The Game").setDuration("100");
+        MovieData movie = new MovieData().setTitle("The Game");
         app.getMovieHelper().fillMovieForm(movie);
         app.getMovieHelper().submitCreationMovie();
         boolean requiredFild = app.getMovieHelper().isElementPresent(By.cssSelector("input.error"));
