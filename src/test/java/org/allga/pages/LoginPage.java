@@ -37,7 +37,7 @@ public class LoginPage extends AnyPage {
 
     public LoginPage ensurePageLoaded() {
         super.ensurePageLoaded();
-        wait.until(presenceOfElementLocated(By.cssSelector("div.addmovie")));
+        wait.until(presenceOfElementLocated(By.id("loginform")));
         return this;
     }
 }
