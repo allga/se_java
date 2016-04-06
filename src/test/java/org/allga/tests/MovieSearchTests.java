@@ -8,8 +8,8 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertTrue;
 
 
 /**
@@ -20,17 +20,19 @@ public class MovieSearchTests extends TestBase {
     @Test
     public void testFoundMovies() {
         app.getNavigationHelper().goToHomePage();
-        MovieData movie = app.getMovieHelper().getAllMovies().get(0);
-        final String title = movie.getTitle();
-        boolean result = app.getMovieHelper().foundMovies(title);
-        assertThat(result, equalTo(true));
+        final String title = app.getMovieHelper().getAllMovies().get(0).getTitle();
+        app.getMovieHelper().searchMovies(title);
         List<MovieData> searchResult = app.getMovieHelper().getAllMovies();
+
+        assertTrue(searchResult.size() > 0);
+
         for (MovieData m : searchResult) {
             assertThat(m.getTitle(), containsString(title));
+            System.out.println(m.getTitle());
         }
     }
 
-    @Test
+    @Test (enabled = false)
     public void testNotFoundMovies() {
         app.getNavigationHelper().goToHomePage();
         final String unrealTitle = "000000000000";

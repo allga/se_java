@@ -79,4 +79,7 @@ public class MovieHelper extends BaseHelper {
         driver.findElement(By.id("q")).sendKeys(Keys.ENTER);
     }
 
+    public void searchMovies(String title) {
+        pages.homePage.ensurePageLoaded().searchByTitle(title).ensurePageLoaded();
+    }
 }

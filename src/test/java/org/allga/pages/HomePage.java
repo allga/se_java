@@ -1,6 +1,7 @@
 package org.allga.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
+import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
 
 /*
  */
@@ -21,6 +23,9 @@ public class HomePage extends InternalPage {
 
     @FindBy(css = "div.title")
     private List<WebElement> movies;
+
+    @FindBy(id = "q")
+    private WebElement searchInput;
 
     public HomePage(PageManager pages) {
         super(pages);
@@ -40,6 +45,14 @@ public class HomePage extends InternalPage {
         return pages.moviePage;
     }
 
+    public HomePage searchByTitle(String  title) {
+        WebElement oldResult = movie;
+        searchInput.clear();
+        searchInput.sendKeys(title);
+        searchInput.sendKeys(Keys.ENTER);
+        wait.until(stalenessOf(oldResult));
+        return this;
+    }
     public HomePage ensurePageLoaded() {
         super.ensurePageLoaded();
         wait.until(presenceOfElementLocated(By.id("results")));
