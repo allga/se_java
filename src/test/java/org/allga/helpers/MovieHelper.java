@@ -17,6 +17,10 @@ public class MovieHelper extends BaseHelper {
         super(manager.getDriver());
     }
 
+    public boolean isLoggedIn (){
+        return pages.internalPage.waitPageLoaded();
+    }
+
     public boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);

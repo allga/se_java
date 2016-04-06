@@ -1,6 +1,5 @@
 package org.allga.tests;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -10,7 +9,6 @@ public class LoginTest extends TestBase {
 
     @Test
     public void testLogin() throws Exception {
-        assertThat((app.getMovieHelper().isElementPresent(By.cssSelector("a[href*=\"php4dvd/?logout\"]"))), equalTo(true));
-
+        assertThat(app.getMovieHelper().isLoggedIn(), equalTo(true));
     }
 }
