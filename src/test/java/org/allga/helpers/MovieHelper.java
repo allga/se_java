@@ -37,9 +37,9 @@ public class MovieHelper extends BaseHelper {
 
     public List<MovieData> getAllMovies() {
         List<MovieData> movies = new ArrayList<MovieData>();
-        List<WebElement> elements = new ArrayList<WebElement>(driver.findElements(By.cssSelector("div.movie_box")));
+        List<WebElement> elements = new ArrayList<WebElement>(pages.homePage.ensurePageLoaded().getMovies());
         for (WebElement el : elements) {
-            String title = el.findElement(By.cssSelector("div.title")).getText();
+            String title = el.getText();
             movies.add(new MovieData().setTitle(title));
         }
         return movies;
