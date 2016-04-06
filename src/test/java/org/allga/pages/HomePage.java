@@ -2,6 +2,7 @@ package org.allga.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -9,7 +10,6 @@ import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
-import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
 
 /*
  */
@@ -27,8 +27,16 @@ public class HomePage extends InternalPage {
     @FindBy(id = "q")
     private WebElement searchInput;
 
+    @FindBy(css = "div.content")
+    private WebElement searchNull;
+
+
     public HomePage(PageManager pages) {
         super(pages);
+    }
+
+    public String getSearchNull() {
+        return searchNull.getText();
     }
 
     public List<WebElement> getMovies() {
@@ -46,18 +54,20 @@ public class HomePage extends InternalPage {
     }
 
     public HomePage searchByTitle(String  title) {
-        WebElement oldResult = movie;
         searchInput.clear();
         searchInput.sendKeys(title);
         searchInput.sendKeys(Keys.ENTER);
-        wait.until(stalenessOf(oldResult));
-        return this;
-    }
-    public HomePage ensurePageLoaded() {
-        super.ensurePageLoaded();
-        wait.until(presenceOfElementLocated(By.id("results")));
-        wait.until(presenceOfAllElementsLocatedBy(By.cssSelector("div.movie_box")));
         return this;
     }
 
+    public HomePage ensurePageLoaded() {
+        super.ensurePageLoaded();
+        wait.until(presenceOfElementLocated(By.id("results")));
+        try {
+            wait.until(presenceOfAllElementsLocatedBy(By.cssSelector("div.movie_box")));
+            return this;
+        } catch (TimeoutException ex) {
+            return this;
+        }
+    }
 }
