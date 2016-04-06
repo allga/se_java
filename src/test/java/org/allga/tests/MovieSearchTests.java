@@ -28,17 +28,14 @@ public class MovieSearchTests extends TestBase {
 
         for (MovieData m : searchResult) {
             assertThat(m.getTitle(), containsString(title));
-            System.out.println(m.getTitle());
         }
     }
 
-    @Test (enabled = false)
+    @Test
     public void testNotFoundMovies() {
         app.getNavigationHelper().goToHomePage();
         final String unrealTitle = "000000000000";
-        boolean result = app.getMovieHelper().foundMovies(unrealTitle);
-        assertThat(result, equalTo(false));
-        String founded = app.getDriver().findElement(By.cssSelector("div.content")).getText();
-        assertThat(founded, equalTo("No movies where found."));
+
+        assertThat(app.getMovieHelper().searchMotFound(unrealTitle), equalTo("No movies where found."));
     }
 }
