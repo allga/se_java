@@ -13,13 +13,6 @@ import java.util.List;
  */
 public class MovieHelper extends BaseHelper {
 
-    private boolean acceptNextAlert;
-
-    public MovieHelper(WebDriver driver) {
-        super(driver);
-        acceptNextAlert = true;
-    }
-
     public MovieHelper(ApplicationManager manager) {
         super(manager.getDriver());
     }
@@ -33,26 +26,9 @@ public class MovieHelper extends BaseHelper {
         }
     }
 
-    public String closeAlertAndGetItsText() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            if (acceptNextAlert) {
-                alert.accept();
-            } else {
-                alert.dismiss();
-            }
-            return alertText;
-        } finally {
-            acceptNextAlert = true;
-        }
-    }
-
     public void fillMovieForm(MovieData movie) {
-        type(By.name("imdbid"), movie.getNumber());
-        type(By.name("name"), movie.getTitle());
-        type(By.name("year"), movie.getYear());
-        type(By.name("duration"), movie.getDuration());
+        pages.addPage.setTitle(movie.getTitle());
+        pages.addPage.setYear(movie.getYear());
     }
 
     public List<WebElement> allMovies() {
@@ -61,17 +37,12 @@ public class MovieHelper extends BaseHelper {
 
     public List<MovieData> getAllMovies() {
         List<MovieData> movies = new ArrayList<MovieData>();
-        waitMovies();
         List<WebElement> elements = new ArrayList<WebElement>(driver.findElements(By.cssSelector("div.movie_box")));
         for (WebElement el : elements) {
             String title = el.findElement(By.cssSelector("div.title")).getText();
             movies.add(new MovieData().setTitle(title));
         }
         return movies;
-    }
-
-    public int countAllMovies() {
-        return allMovies().size();
     }
 
     public void deleteMovie() {
@@ -81,7 +52,7 @@ public class MovieHelper extends BaseHelper {
 
 
     public void submitCreationMovie() {
-        click(By.id("submit"));
+        pages.addPage.clickSubmit();
     }
 
     public boolean foundMovies(String movie) {
@@ -102,7 +73,4 @@ public class MovieHelper extends BaseHelper {
         driver.findElement(By.id("q")).sendKeys(Keys.ENTER);
     }
 
-    public void waitMovies() {
-        (new WebDriverWait(driver, 5)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("div.movie_box")));
-    }
 }
