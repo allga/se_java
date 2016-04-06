@@ -58,9 +58,10 @@ public class ApplicationManager {
 
     protected void login(String username, String password) {
         driver.get(baseUrl + "php4dvd/");
-        getBaseHelper().type(By.id("username"), username);
-        getBaseHelper().type(By.name("password"), password);
-        getBaseHelper().click(By.name("submit"));
+        getBaseHelper().pages.loginPage.ensurePageLoaded().
+                setUsernameField(username).
+                setPasswordField(password).
+                clickSubmitButton();
     }
 
     public MovieHelper getMovieHelper() {
